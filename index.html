@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        :root { --main: #ff4d6d; --bg: #fff0f3; }
+        body { background: var(--bg); font-family: 'Segoe UI', Tahoma, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; text-align: center; }
+        .card { background: white; padding: 35px 25px; border-radius: 40px; box-shadow: 0 15px 40px rgba(255, 77, 109, 0.15); width: 85%; max-width: 400px; border: 2px solid #ffccd5; }
+        
+        /* شاشة الدخول السرية */
+        #passScreen { display: block; }
+        #passInput { padding: 15px; border-radius: 20px; border: 2px solid #ffccd5; width: 80%; margin-bottom: 20px; text-align: center; font-size: 18px; outline: none; }
+        #passInput:focus { border-color: var(--main); }
+
+        /* شاشة المحتوى */
+        #contentScreen { display: none; animation: fadeIn 1s ease-in-out; }
+        .img-story { width: 100%; border-radius: 25px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        #msg-box { background: #fff5f6; padding: 25px 20px; border-radius: 20px; margin: 20px 0; border-right: 6px solid var(--main); color: #444; line-height: 1.8; min-height: 80px; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 17px; }
+
+        .btn { background: var(--main); color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px; transition: 0.3s; }
+        .btn:active { transform: scale(0.95); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="passScreen">
+        <div style="font-size: 40px; margin-bottom: 20px;">🔒</div>
+        <input type="password" id="passInput" placeholder="....">
+        <button class="btn" onclick="checkPass()">دخول ✨</button>
+    </div>
+
+    <div id="contentScreen">
+        <img src="story.jpg" alt="Our Story" class="img-story">
+        <h2 style="color: var(--main); margin-bottom: 5px;">أغلى إنسان في دنيتي ❤️</h2>
+        
+        <div id="msg-box">اضغط على الزرار تحت عشان تشوف غلاوتك عندي..</div>
+        
+        <button class="btn" onclick="nextMsg()">رسالة حب جديدة 🎁</button>
+        <p style="margin-top: 25px; font-size: 12px; color: #ccb5b9; letter-spacing: 1px;">MADE WITH LOVE BY HAGAR</p>
+    </div>
+</div>
+
+<script>
+    // 10 رسائل حب قوية
+    const messages = [
+        "إنت أجمل حكاية في عمري كله، ووجودك جنبي هو اللي بيحلّي الدنيا.. ❤️",
+        "لو لفيت العالم كله مش هلاقي قلب في طيبة وحنية قلبك.. 🌟",
+        "إنت مش بس حبيبي، إنت السند والظهر والأمان اللي كنت بدور عليه.. 💙",
+        "بشكر ربنا كل يوم في سجدتي إنه رزقني بيك وجعلك من نصيبي.. ✨",
+        "ضحكتك هي اللي بتنور لي طريقي وبتهون عليّ أي حاجة صعبة.. 💍",
+        "يا رب يبارك في عمرك ويخليك ليّ ويديمك نعمة مابتخلصش في حياتي.. 👑",
+        "إنت أغلى هدية القدر جابها لي، ومستعدة أديك عمري كله بس أشوفك مبسوط.. 💖",
+        "قلبي مطمن بيك ومعاك دايماً، كأنك إنت الوطن وأنا كنت تايهة قبلك.. 🌍",
+        "كل ثانية وإنت معايا هي عيد، وكل لحظة جنبك بتسوى عندي الدنيا وما فيها.. 🌸",
+        "بحب تفاصيلك الصغيرة قبل الكبيرة، إنت الكمال في عيني يا أغلى الناس.. ❤️"
+    ];
+
+    function checkPass() {
+        const pass = document.getElementById('passInput').value;
+        // الباسورد هو 1234
+        if(pass === "1234") { 
+            document.getElementById('passScreen').style.display = 'none';
+            document.getElementById('contentScreen').style.display = 'block';
+        } else {
+            alert("رقم غلط.. حاول تاني يا بطل!");
+        }
+    }
+
+    function nextMsg() {
+        const msgBox = document.getElementById('msg-box');
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        msgBox.style.opacity = 0;
+        setTimeout(() => {
+            msgBox.innerText = randomMsg;
+            msgBox.style.opacity = 1;
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
